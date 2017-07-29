@@ -62,12 +62,14 @@
       background-size: contain;
       background-color: $white;
     }
+
     .drop-down-link{
       color: $grey;
     }
     #dash-active {
       border-bottom:2px solid $light-grey; 
     }
+
     .menu-options li {
       vertical-align: top;
       font-family: $body-fonts;
@@ -241,7 +243,6 @@
       font-size: 5vh;
       line-height: 0;
       line-height: 0;
-      
     }
   }
 }
