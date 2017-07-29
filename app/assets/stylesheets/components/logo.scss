@@ -31,8 +31,11 @@
       transition: all .4s cubic-bezier(0.42, 0, 0.38, 1.38);
       flex: 1;
     }
-
-    @media screen and (max-width: 992px) {
+  @media screen and (max-width: 991px) {
+    .logo-text{
+      font-size: 1.4em;
+    }
+    .logo-img {
       height: 60px;
     }
 
