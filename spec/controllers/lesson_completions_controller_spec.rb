@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe LessonCompletionsController do
   let(:user) { double('User', id: '1') }
   let(:lesson) { double('Lesson', id: '1') }
-  let(:lesson_completion_attrs) {
+  let(:lesson_completion_attrs) do
     { lesson_id: lesson.id, student_id: user.id }
-  }
+  end
 
   context 'unauthenticated user' do
     describe 'POST #create' do
@@ -25,8 +25,8 @@ RSpec.describe LessonCompletionsController do
 
   context 'authenticated user' do
     before do
-      allow(User).to receive(:includes).with(:lesson_completions).
-        and_return(user)
+      allow(User).to receive(:includes).with(:lesson_completions)
+                                       .and_return(user)
 
       allow(user).to receive(:find).with('1').and_return(user)
       allow(controller).to receive(:current_user).and_return(user)
@@ -50,8 +50,8 @@ RSpec.describe LessonCompletionsController do
       let(:lesson_completion) { double('LessonCompletion') }
 
       before do
-        allow(LessonCompletion).to receive(:where).
-          with(student_id: '1', lesson_id: '1').and_return(lesson_completions)
+        allow(LessonCompletion).to receive(:where)
+          .with(student_id: '1', lesson_id: '1').and_return(lesson_completions)
 
         allow(lesson_completion).to receive(:destroy)
       end
@@ -62,7 +62,7 @@ RSpec.describe LessonCompletionsController do
       end
 
       it 'renders the create template' do
-        delete :destroy, params: { lesson_id: lesson.id}, xhr: true
+        delete :destroy, params: { lesson_id: lesson.id }, xhr: true
         expect(response).to render_template(:create)
       end
     end

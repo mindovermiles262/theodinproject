@@ -1,5 +1,4 @@
 class CourseDecorator < ApplicationDecorator
-
   def badge
     course_badges.fetch(title, 'odin-logo.svg')
   end

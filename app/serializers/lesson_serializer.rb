@@ -3,17 +3,18 @@ class LessonSerializer
   private :lesson, :between_dates
 
   def initialize(lesson, between_dates = nil)
-    @lesson, @between_dates = lesson, between_dates
+    @lesson = lesson
+    @between_dates = between_dates
   end
 
   def self.as_json(lesson, between_dates = nil)
     new(lesson, between_dates).as_json
   end
 
-  def as_json(options=nil)
+  def as_json(_options = nil)
     {
       title: lesson.title,
-      completions: completions.count,
+      completions: completions.count
     }
   end
 

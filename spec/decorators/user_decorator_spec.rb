@@ -3,12 +3,12 @@ require 'rails_helper'
 RSpec.describe UserDecorator do
   subject(:user_decorator) { UserDecorator.new(user) }
 
-  let(:user) {
+  let(:user) do
     double(
       'User',
       projects: projects
     )
-  }
+  end
 
   let(:projects) { [project] }
   let(:project) { double('Project') }

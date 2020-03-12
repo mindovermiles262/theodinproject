@@ -8,7 +8,6 @@ class CreateActiveAdminComments < ActiveRecord::Migration[5.0]::Current
       t.timestamps
     end
     add_index :active_admin_comments, [:namespace]
-
   end
 
   def self.down

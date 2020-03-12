@@ -35,12 +35,12 @@ Rails.application.configure do
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
-  #Thread safety, needed by Capybara
+  # Thread safety, needed by Capybara
   config.allow_concurrency = false
 
   # Randomize the order test cases are executed.
   config.active_support.test_order = :random
 
-  #Raise error on params
+  # Raise error on params
   config.action_controller.action_on_unpermitted_parameters = :raise
 end

@@ -4,36 +4,36 @@ RSpec.describe ProjectsController, type: :controller do
   let(:student) { double('Student', id: '1', admin?: false) }
   let(:admin) { double('Admin', id: '2', admin?: true) }
   let(:course) { double('Course', id: '1') }
-  let(:lesson) {
+  let(:lesson) do
     double('Lesson', id: '1', slug: 'building-blocks', course: course)
-  }
+  end
 
   let(:valid_project_attrs) { { repo_url: 'https://github.com/user/repo' } }
   let(:invalid_project_attrs) { { repo_url: 'https://github.co' } }
 
-  let(:valid_params) {
+  let(:valid_params) do
     {
       lesson_id: lesson.slug,
       project: valid_project_attrs
     }
-  }
+  end
 
-  let(:invalid_params) {
+  let(:invalid_params) do
     {
       lesson_id: lesson.slug,
       project: invalid_project_attrs
     }
-  }
+  end
 
   let(:projects) { double('ProjectsRelation') }
   let(:projects_association) { double('ProjectsAssociation') }
-  let(:student_project) {
+  let(:student_project) do
     double('Project', valid_project_attrs.merge(id: '1', user: student))
-  }
+  end
 
-  let(:admin_project) {
+  let(:admin_project) do
     double('Project', valid_project_attrs.merge(id: '2', user: admin))
-  }
+  end
 
   describe 'GET #index' do
     before do
@@ -87,11 +87,11 @@ RSpec.describe ProjectsController, type: :controller do
   end
 
   describe 'PATCH #update' do
-    subject {
+    subject do
       patch :update,
-      params: valid_params.merge(id: student_project.id),
-      xhr: true
-    }
+            params: valid_params.merge(id: student_project.id),
+            xhr: true
+    end
 
     context 'unauthenticated' do
       it_behaves_like 'unauthenticated request'
@@ -106,7 +106,7 @@ RSpec.describe ProjectsController, type: :controller do
               .with(valid_params[:lesson_id]).and_return(lesson)
             allow(Project).to receive(:find).with(student_project.id).and_return(student_project)
             allow(controller).to receive(:authorize!).with(:update, student_project)
-              .and_return(student_project)
+                                                     .and_return(student_project)
           end
 
           context 'valid values' do
@@ -125,11 +125,11 @@ RSpec.describe ProjectsController, type: :controller do
         end
 
         describe "cannot update other user's project" do
-          let(:request) {
+          let(:request) do
             patch :update,
-            params: valid_params.merge(id: admin_project.id),
-            xhr: true
-          }
+                  params: valid_params.merge(id: admin_project.id),
+                  xhr: true
+          end
 
           before do
             allow(controller).to receive(:current_user).and_return(student)
@@ -137,7 +137,7 @@ RSpec.describe ProjectsController, type: :controller do
               .with(valid_params[:lesson_id]).and_return(lesson)
             allow(Project).to receive(:find).with(admin_project.id).and_return(admin_project)
             allow(controller).to receive(:authorize!).with(:update, admin_project)
-              .and_raise(CanCan::AccessDenied)
+                                                     .and_raise(CanCan::AccessDenied)
           end
 
           it_behaves_like 'unauthorized XHR request'
@@ -146,10 +146,10 @@ RSpec.describe ProjectsController, type: :controller do
 
       context 'admin user' do
         describe 'can update his/her project' do
-          let(:request) {
+          let(:request) do
             patch :update, params: valid_params.merge(id: admin_project.id),
-              xhr: true
-          }
+                           xhr: true
+          end
 
           before do
             allow(controller).to receive(:current_user).and_return(admin)
@@ -157,7 +157,7 @@ RSpec.describe ProjectsController, type: :controller do
               .with(valid_params[:lesson_id]).and_return(lesson)
             allow(Project).to receive(:find).with(admin_project.id).and_return(admin_project)
             allow(controller).to receive(:authorize!).with(:update, admin_project)
-              .and_return(admin_project)
+                                                     .and_return(admin_project)
           end
 
           context 'valid values' do
@@ -176,10 +176,10 @@ RSpec.describe ProjectsController, type: :controller do
         end
 
         describe "can update other user's project" do
-          let(:request) {
+          let(:request) do
             patch :update, params: valid_params.merge(id: student_project.id),
-              xhr: true
-          }
+                           xhr: true
+          end
 
           before do
             allow(controller).to receive(:current_user).and_return(admin)
@@ -187,7 +187,7 @@ RSpec.describe ProjectsController, type: :controller do
               .with(valid_params[:lesson_id]).and_return(lesson)
             allow(Project).to receive(:find).with(student_project.id).and_return(student_project)
             allow(controller).to receive(:authorize!).with(:update, student_project)
-              .and_return(student_project)
+                                                     .and_return(student_project)
           end
 
           context 'valid values' do
@@ -209,11 +209,11 @@ RSpec.describe ProjectsController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    subject {
+    subject do
       delete :destroy,
              params: { lesson_id: lesson.slug, id: student_project.id },
              xhr: true
-    }
+    end
 
     context 'unauthenticated' do
       it_behaves_like 'unauthenticated request'
@@ -228,8 +228,8 @@ RSpec.describe ProjectsController, type: :controller do
               .with(valid_params[:lesson_id]).and_return(lesson)
             allow(Project).to receive(:find).with(student_project.id).and_return(student_project)
             allow(controller).to receive(:authorize!).with(:destroy, student_project)
-              .and_return(student_project)
-            allow(controller).to receive(:new_project).and_return(student_project) 
+                                                     .and_return(student_project)
+            allow(controller).to receive(:new_project).and_return(student_project)
           end
 
           it 'assigns recent submissions' do
@@ -247,11 +247,11 @@ RSpec.describe ProjectsController, type: :controller do
         end
 
         describe "cannot destroy other user's project" do
-          let(:request) {
+          let(:request) do
             delete :destroy, params: {
               lesson_id: lesson.slug, id: admin_project.id
             }, xhr: true
-          }
+          end
 
           before do
             allow(controller).to receive(:current_user).and_return(student)
@@ -259,7 +259,7 @@ RSpec.describe ProjectsController, type: :controller do
               .with(valid_params[:lesson_id]).and_return(lesson)
             allow(Project).to receive(:find).with(admin_project.id).and_return(admin_project)
             allow(controller).to receive(:authorize!).with(:destroy, admin_project)
-              .and_raise(CanCan::AccessDenied)
+                                                     .and_raise(CanCan::AccessDenied)
           end
 
           it_behaves_like 'unauthorized XHR request'
@@ -268,11 +268,11 @@ RSpec.describe ProjectsController, type: :controller do
 
       context 'admin user' do
         describe 'can destroy his/her project' do
-          let(:request) {
+          let(:request) do
             delete :destroy,
                    params: { lesson_id: lesson.slug, id: admin_project.id },
                    xhr: true
-          }
+          end
 
           before do
             allow(controller).to receive(:current_user).and_return(admin)
@@ -280,7 +280,7 @@ RSpec.describe ProjectsController, type: :controller do
               .with(valid_params[:lesson_id]).and_return(lesson)
             allow(Project).to receive(:find).with(admin_project.id).and_return(admin_project)
             allow(controller).to receive(:authorize!).with(:destroy, admin_project)
-              .and_return(admin_project)
+                                                     .and_return(admin_project)
             allow(controller).to receive(:new_project).and_return(admin_project)
             allow(controller).to receive(:latest_projects).and_return(projects)
           end
@@ -299,11 +299,11 @@ RSpec.describe ProjectsController, type: :controller do
         end
 
         describe "can destroy other user's project" do
-          subject {
+          subject do
             delete :destroy,
                    params: { lesson_id: lesson.slug, id: student_project.id },
                    xhr: true
-          }
+          end
 
           before do
             allow(controller).to receive(:current_user).and_return(admin)
@@ -311,7 +311,7 @@ RSpec.describe ProjectsController, type: :controller do
               .with(valid_params[:lesson_id]).and_return(lesson)
             allow(Project).to receive(:find).with(student_project.id).and_return(student_project)
             allow(controller).to receive(:authorize!).with(:destroy, student_project)
-              .and_return(student_project)
+                                                     .and_return(student_project)
             allow(controller).to receive(:new_project).and_return(admin_project)
             allow(controller).to receive(:latest_projects).and_return(projects)
           end

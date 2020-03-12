@@ -11,14 +11,14 @@ RSpec.describe LessonsController do
   before do
     allow(controller).to receive(:current_user).and_return(user)
 
-    allow(User).to receive(:includes).with(:completed_lessons).
-      and_return(user)
+    allow(User).to receive(:includes).with(:completed_lessons)
+                                     .and_return(user)
 
     allow(user).to receive(:find).with('1').and_return(user)
 
-    allow(Lesson).to receive(:includes).
-      with(:section, course: [:lessons, sections: [:lessons]]).
-        and_return(lesson)
+    allow(Lesson).to receive(:includes)
+      .with(:section, course: [:lessons, sections: [:lessons]])
+      .and_return(lesson)
 
     allow(lesson).to receive(:friendly).and_return(lesson)
     allow(lesson).to receive(:find).with(params[:id]).and_return(lesson)
@@ -42,7 +42,7 @@ RSpec.describe LessonsController do
       before do
         allow(Lesson).to receive(:friendly).and_return(lesson)
         allow(lesson).to receive(:find).with('123')
-          .and_raise(ActiveRecord::RecordNotFound)
+                                       .and_raise(ActiveRecord::RecordNotFound)
         request
       end
 

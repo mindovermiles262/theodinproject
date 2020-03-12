@@ -22,7 +22,7 @@ class NextLesson
   end
 
   def last_lesson_completion
-    lesson_completions.sort_by(&:created_at).last
+    lesson_completions.max_by(&:created_at)
   end
 
   def latest_completed_lesson
@@ -34,6 +34,6 @@ class NextLesson
   end
 
   def remaining_lesson_to_complete
-    lessons_left_to_complete.sort_by(&:position).first
+    lessons_left_to_complete.min_by(&:position)
   end
 end

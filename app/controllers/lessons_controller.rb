@@ -25,6 +25,7 @@ class LessonsController < ApplicationController
 
   def set_project
     return unless user_signed_in?
+
     user_project || new_project
   end
 

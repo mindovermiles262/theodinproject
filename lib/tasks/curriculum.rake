@@ -1,5 +1,4 @@
 namespace :curriculum do
-
   desc 'Grab Latest Lesson Content from Github'
   task update_content: :environment do
     Rake::Task['curriculum:content:import'].invoke
@@ -14,7 +13,7 @@ namespace :curriculum do
       Rails.logger.info 'Importing lesson content...'
 
       Lesson.all.each_with_index do |lesson, i|
-        Rails.logger.info "Importing #{i+1}/#{total}: #{lesson.title}"
+        Rails.logger.info "Importing #{i + 1}/#{total}: #{lesson.title}"
         lesson.import_content_from_github
       end
 
@@ -25,7 +24,7 @@ namespace :curriculum do
     task verify: :environment do
       Rails.logger.info 'Verifying lesson content...'
 
-      Lesson.all.each_with_index do |lesson, i|
+      Lesson.all.each_with_index do |lesson, _i|
         Rails.logger.error("Nil content for #{lesson.title}!") if lesson.content.nil?
         Rails.logger.error("Blank content for #{lesson.title}!") if lesson.content.blank?
       end

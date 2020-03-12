@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User do
-  subject(:user) {
+  subject(:user) do
     User.new(
       username: 'kevin',
       email: 'kevin@example.com',
@@ -10,15 +10,15 @@ RSpec.describe User do
       uid: '',
       avatar: avatar
     )
-  }
+  end
   let(:provider) { '' }
   let(:avatar) { 'http://github.com/fake-avatar' }
 
-  let(:lesson_completions) {
+  let(:lesson_completions) do
     [first_lesson_completion, second_lesson_completion]
-  }
+  end
 
-  let(:first_lesson_completion) {
+  let(:first_lesson_completion) do
     double(
       'LessonCompletion',
       id: 1,
@@ -26,9 +26,9 @@ RSpec.describe User do
       created_at: DateTime.new(2016, 11, 11),
       lesson_id: 1
     )
-  }
+  end
 
-  let(:second_lesson_completion) {
+  let(:second_lesson_completion) do
     double(
       'LessonCompletion',
       id: 2,
@@ -36,7 +36,7 @@ RSpec.describe User do
       created_at: DateTime.new(2016, 11, 8),
       lesson_id: 2
     )
-  }
+  end
 
   let(:completed_lessons) { [first_lesson_completion] }
 
@@ -46,7 +46,7 @@ RSpec.describe User do
     allow(Lesson).to receive(:find).with(2).and_return(second_lesson_completion)
 
     allow(lesson_completions).to receive(:order).with(created_at: :asc)
-      .and_return(lesson_completions)
+                                                .and_return(lesson_completions)
   end
 
   it { is_expected.to validate_length_of(:username).is_at_least(4).is_at_most(20) }
@@ -93,7 +93,7 @@ RSpec.describe User do
 
     before do
       allow(lesson_completions).to receive(:find_by).with(lesson_id: 1)
-        .and_return(first_lesson_completion)
+                                                    .and_return(first_lesson_completion)
     end
 
     it 'returns the time of the latest completed lesson' do

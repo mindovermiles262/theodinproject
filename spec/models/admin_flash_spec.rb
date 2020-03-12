@@ -2,13 +2,13 @@ require 'rails_helper'
 
 RSpec.describe AdminFlash do
   let(:admin_flashes) { [admin_flash, expired_admin_flash] }
-  let(:admin_flash) {
+  let(:admin_flash) do
     double('AdminFlash', id: 1, message: 'foo', expires: 1.days.from_now)
-  }
+  end
 
-  let(:expired_admin_flash) {
+  let(:expired_admin_flash) do
     double('AdminFlash', id: 1, message: 'bar', expires: 1.days.ago)
-  }
+  end
 
   let(:current_time) { '2016-10-21 12:52' }
 
@@ -17,12 +17,12 @@ RSpec.describe AdminFlash do
 
   before do
     allow(AdminFlash).to receive(:order).with('created_at desc')
-      .and_return(admin_flashes)
+                                        .and_return(admin_flashes)
 
     allow(Time).to receive(:now).and_return(current_time)
 
     allow(admin_flashes).to receive(:where).with('expires >= ?', current_time)
-      .and_return([admin_flash])
+                                           .and_return([admin_flash])
   end
 
   describe '.unexpired_messages' do

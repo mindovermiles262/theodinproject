@@ -6,12 +6,12 @@ RSpec.describe VotesController do
   let(:project) { double('Project', user: other_user) }
 
   let(:project_id) { '1' }
-  let(:params) {
+  let(:params) do
     {
       lesson_id: '1',
       project_id: project_id
     }
-  }
+  end
 
   describe '#create' do
     context 'when user is signed in' do

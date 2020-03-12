@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe LessonsHelper do
-
   describe '#next_lesson_button_state' do
     let(:lesson) { double('Lesson') }
     let(:user) { double('User') }
@@ -9,8 +8,8 @@ RSpec.describe LessonsHelper do
 
     before do
       allow(helper).to receive(:current_user).and_return(user)
-      allow(user).to receive(:has_completed?).with(lesson).
-        and_return(user_completed_lesson)
+      allow(user).to receive(:has_completed?).with(lesson)
+                                             .and_return(user_completed_lesson)
     end
 
     it 'returns button primary class' do

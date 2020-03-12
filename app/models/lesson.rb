@@ -1,7 +1,7 @@
 class Lesson < ApplicationRecord
   extend FriendlyId
 
-  friendly_id :slug_candidates, use: [:slugged, :finders]
+  friendly_id :slug_candidates, use: %i[slugged finders]
 
   belongs_to :section
   has_one :course, through: :section
@@ -33,8 +33,8 @@ class Lesson < ApplicationRecord
 
   def has_submission?
     is_project? &&
-    accepts_submission? &&
-    is_not_a_ruby_project? # should be removed after revamping ruby lessons
+      accepts_submission? &&
+      is_not_a_ruby_project? # should be removed after revamping ruby lessons
   end
 
   def has_live_preview?

@@ -7,8 +7,8 @@ RSpec.describe CoursesController do
   let(:decorated_course) { double('CourseDecorator') }
 
   before do
-    allow(CourseDecorator).to receive(:new).with(course).
-      and_return(decorated_course)
+    allow(CourseDecorator).to receive(:new).with(course)
+                                           .and_return(decorated_course)
   end
 
   describe 'GET index' do
@@ -29,8 +29,8 @@ RSpec.describe CoursesController do
 
   describe 'GET show' do
     before do
-      allow(Course).to receive_message_chain(:includes, :friendly, :find).
-        and_return(course)
+      allow(Course).to receive_message_chain(:includes, :friendly, :find)
+        .and_return(course)
     end
 
     it 'assigns @course' do

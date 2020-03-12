@@ -15,7 +15,7 @@ class ProjectReporter
     gitter_client.send_message(text: message, room_id: ENV['MODERATORS_CHATROOM_ID'])
     true
   rescue Faraday::ClientError
-   false
+    false
   end
 
   private
@@ -30,9 +30,7 @@ class ProjectReporter
   end
 
   def report_message
-    if description.present?
-      "**Reporter's message**: #{description}"
-    end
+    "**Reporter's message**: #{description}" if description.present?
   end
 
   def gitter_client

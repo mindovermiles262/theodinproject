@@ -10,9 +10,9 @@ module OmniauthProviders
       let(:user_provider) { double('UserProvider') }
 
       before do
-        allow(UserProvider).to receive(:create!).
-          with({ provider: 'github', uid: '123', user_id: 1 }).
-          and_return(user_provider)
+        allow(UserProvider).to receive(:create!)
+          .with(provider: 'github', uid: '123', user_id: 1)
+          .and_return(user_provider)
       end
 
       it 'returns a new user provider' do

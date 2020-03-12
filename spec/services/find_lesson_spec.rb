@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe FindLesson do
   subject(:find_lesson) { FindLesson.new(lesson, course) }
 
-  let(:lesson)  { double('Lesson', position: position) }
+  let(:lesson) { double('Lesson', position: position) }
   let(:position) { 1 }
   let(:course) { double('Course', lessons: lessons) }
   let(:lessons)  { [lesson, lesson_two, lesson_three] }
@@ -12,7 +12,6 @@ RSpec.describe FindLesson do
   let(:lesson_three_position) { 1 }
 
   describe '#next_lesson' do
-
     it 'will return the next lesson' do
       expect(find_lesson.next_lesson).to eql(lesson_two)
     end

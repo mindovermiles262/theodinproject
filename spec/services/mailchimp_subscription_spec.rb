@@ -7,7 +7,7 @@ RSpec.describe MailchimpSubscription do
     {
       email: email,
       username: username,
-      signup_date: signup_date,
+      signup_date: signup_date
     }
   end
   let(:email) { 'kevin@fizbaz.com' }
@@ -20,8 +20,8 @@ RSpec.describe MailchimpSubscription do
       status: :subscribed,
       merge_fields: {
         USERNAME: username,
-        SIGNUPDATE: signup_date,
-      },
+        SIGNUPDATE: signup_date
+      }
     }
   end
 
@@ -42,7 +42,6 @@ RSpec.describe MailchimpSubscription do
     end
 
     context 'when an error occurs with mail chimp' do
-
       before do
         allow(members).to receive(:create).and_raise(Gibbon::MailChimpError)
       end

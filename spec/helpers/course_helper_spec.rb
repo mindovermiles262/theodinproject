@@ -1,24 +1,24 @@
 require 'rails_helper'
 
 RSpec.describe CourseHelper do
-  let(:lesson) {
+  let(:lesson) do
     double(
       'Lesson',
       title: 'Ruby Basics',
       id: lesson_id,
       is_project?: lesson_is_project
     )
-  }
+  end
 
   let(:lesson_is_project) { false }
   let(:lesson_id) { 1 }
   let(:user) { double('User', completed_lessons: completed_lessons) }
   let(:completed_lessons) { [completion_lesson] }
-  let(:completion_lesson) { double('Lesson', id: 1)}
+  let(:completion_lesson) { double('Lesson', id: 1) }
 
   before do
-    allow(helper).to receive(:current_user).
-      and_return(user)
+    allow(helper).to receive(:current_user)
+      .and_return(user)
   end
 
   describe '#lesson_completed?' do
@@ -61,12 +61,12 @@ RSpec.describe CourseHelper do
     let(:user) { double('User') }
     let(:course) { double('Course') }
     let(:user_signed_in) { true }
-    let(:course_completed_by_user) { true}
+    let(:course_completed_by_user) { true }
 
     before do
       allow(helper).to receive(:user_signed_in?).and_return(user_signed_in)
-      allow(helper).to receive(:course_completed_by_user?).with(course, user).
-        and_return(course_completed_by_user)
+      allow(helper).to receive(:course_completed_by_user?).with(course, user)
+                                                          .and_return(course_completed_by_user)
     end
 
     it 'returns course completed class' do
@@ -96,13 +96,13 @@ RSpec.describe CourseHelper do
     let(:user) { double('User') }
     let(:course) { double('Course') }
     let(:user_signed_in) { true }
-    let(:course_completed_by_user) { true}
+    let(:course_completed_by_user) { true }
 
     before do
       allow(helper).to receive(:user_signed_in?).and_return(user_signed_in)
 
-      allow(helper).to receive(:course_completed_by_user?).with(course, user).
-        and_return(course_completed_by_user)
+      allow(helper).to receive(:course_completed_by_user?).with(course, user)
+                                                          .and_return(course_completed_by_user)
     end
 
     it 'returns button--transparent class' do

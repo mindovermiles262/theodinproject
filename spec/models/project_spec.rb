@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Project, type: :model do
-  subject {
+  subject do
     Project.new(
       repo_url: 'https://github.com/learner/repo',
       user_id: user.id,
       lesson_id: lesson.id
     )
-  }
+  end
   let(:user) { double('User', id: 1) }
   let(:lesson) { double('Lesson', id: 1) }
   let(:voting_user) { double('User', id: 2) }

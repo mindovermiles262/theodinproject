@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Lesson do
-  subject(:lesson) {
+  subject(:lesson) do
     Lesson.new(
       title: 'test_lesson',
       position: 1,
@@ -11,7 +11,7 @@ RSpec.describe Lesson do
       content: nil,
       slug: 'test-lesson'
     )
-  }
+  end
 
   let(:course) { double('Course', title: 'web_dev_101') }
   let(:section) { double('Section', lessons: lessons) }

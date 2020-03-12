@@ -1,9 +1,9 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_request, except: :index
   before_action :find_lesson
-  before_action :find_project, only: %i(update destroy)
+  before_action :find_project, only: %i[update destroy]
 
-  authorize_resource only: %i(update destroy)
+  authorize_resource only: %i[update destroy]
 
   def index
     @projects = all_projects.page(params[:page]).per(50)

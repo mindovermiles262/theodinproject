@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe UsersHelper do
-  let(:user) {
-     double(
+  let(:user) do
+    double(
       'User',
       lesson_completion_time: lesson_completion_time,
       learning_goal: learning_goal
     )
-  }
+  end
 
   let(:lesson_completion_time) { DateTime.new(2016, 10, 11, 19) }
   let(:learning_goal) { 'To be the best' }
@@ -27,9 +27,9 @@ RSpec.describe UsersHelper do
 
     context 'when the user does not have a learning goal' do
       let(:learning_goal) { '' }
-      let(:settings_link) {
-        "Set a learning goal in your <a class=\"profile-card__link\" href=\"/users/edit\">settings</a>."
-      }
+      let(:settings_link) do
+        'Set a learning goal in your <a class="profile-card__link" href="/users/edit">settings</a>.'
+      end
 
       it 'returns a link to the users settings page' do
         expect(helper.display_dashboard_learning_goal(user)).to eql(settings_link)

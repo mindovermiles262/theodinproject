@@ -16,7 +16,7 @@ class LessonContentImporter
     Rails.logger.info 'Importing lesson content...'
 
     Lesson.all.each_with_index do |lesson, i|
-      Rails.logger.info "Importing #{i+1}/#{total}: #{lesson.title}"
+      Rails.logger.info "Importing #{i + 1}/#{total}: #{lesson.title}"
       self.for(lesson)
     end
 
@@ -42,7 +42,7 @@ class LessonContentImporter
   end
 
   def decoded_content
-    Base64.decode64(github_response[:content]).force_encoding("UTF-8")
+    Base64.decode64(github_response[:content]).force_encoding('UTF-8')
   end
 
   def github_response

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :find_user, except: [:index]
-  authorize_resource only: [:edit, :update]
+  authorize_resource only: %i[edit update]
 
   def show
     @courses = decorated_track_courses
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   private
 
   def decorated_track_courses
-    @user.track.courses.track_order.map  do |course|
+    @user.track.courses.track_order.map do |course|
       CourseDecorator.new(course)
     end
   end
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
         :learning_goal,
         :uid,
         :provider,
-        :track_id,
+        :track_id
       )
   end
 

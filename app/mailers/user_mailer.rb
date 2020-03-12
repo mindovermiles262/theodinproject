@@ -8,7 +8,7 @@ class UserMailer < ActionMailer::Base
     mail(
       subject: 'Getting started with The Odin Project',
       to: user.email,
-      template_name: 'welcome_email',
+      template_name: 'welcome_email'
     )
   end
 

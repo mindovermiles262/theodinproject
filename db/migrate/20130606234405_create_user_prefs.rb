@@ -6,6 +6,6 @@ class CreateUserPrefs < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_index :user_prefs, :user_id, :unique => true
+    add_index :user_prefs, :user_id, unique: true
   end
 end

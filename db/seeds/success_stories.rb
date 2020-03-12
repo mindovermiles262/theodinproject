@@ -6,14 +6,14 @@ def success_stories
       story_content: 'TOP was a perfect match for my learning style. Not walking me through an entire project but actually forcing me to figure it out on my own, by pointing me in all the right directions in order to complete them. That helped me dig deeper into various important topics, which then gave me the necessary knowledge and confidence to start applying for jobs and landing that dream job. The community was part of it too, first getting help and then helping, it was a great way to learn and make it stick.',
       job_title: 'Fullstack Developer',
       social_media_link: 'https://github.com/RobPando'
-     },
-     {
-       student_name: 'Olivia',
-       avatar_path_name: 'olivia.jpg',
-       story_content: 'Before I found TOP, I was jumping from Coursera course to Coursera course without really any guidance or community. I wanted to get a real development job and not operating an IT help desk, and I wanted to do it for free. After reading people’s success stories on Reddit on how they found a development job, many people praised the curriculum at TOP and how they got a job even before they finished it. I couldn’t believe it! So I decided to give it a shot. The self-paced structure, reading materials, and challenges was easy to understand and made me feel I was in control. I was even able to find a community to help guide and mentor me through the process. About eight months after I started, I got my first development gig - and I didn’t even finish the curriculum! Because of TOP, I can call myself a developer.',
-       job_title: 'Information Security Engineer',
-       social_media_link: 'https://codemethisolivia.com/',
-     },
+    },
+    {
+      student_name: 'Olivia',
+      avatar_path_name: 'olivia.jpg',
+      story_content: 'Before I found TOP, I was jumping from Coursera course to Coursera course without really any guidance or community. I wanted to get a real development job and not operating an IT help desk, and I wanted to do it for free. After reading people’s success stories on Reddit on how they found a development job, many people praised the curriculum at TOP and how they got a job even before they finished it. I couldn’t believe it! So I decided to give it a shot. The self-paced structure, reading materials, and challenges was easy to understand and made me feel I was in control. I was even able to find a community to help guide and mentor me through the process. About eight months after I started, I got my first development gig - and I didn’t even finish the curriculum! Because of TOP, I can call myself a developer.',
+      job_title: 'Information Security Engineer',
+      social_media_link: 'https://codemethisolivia.com/'
+    },
     {
       student_name: 'Cody Loyd',
       avatar_path_name: 'cody_loyd.jpg',
@@ -54,7 +54,7 @@ def success_stories
       avatar_path_name: 'sean.jpg',
       story_content: 'TOP smoothed out the steep learning curve in web development, allowing me to confidently learn at my own pace and taught me how to approach and solve real-life programming problems.  The projects in TOP were a perfect mix of difficulty, allowing me to gain exposure to different technologies and feel challenged without feeling overwhelmed.  Because of the foundation TOP provided, I was able to easily transition into freelancing and then into a junior level Rails developer position.',
       job_title: 'Mid-Level Rails Developer',
-      social_media_link: 'https://www.seanszurko.com/',
+      social_media_link: 'https://www.seanszurko.com/'
     }
   ]
 end

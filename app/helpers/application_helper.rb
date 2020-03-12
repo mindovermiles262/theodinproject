@@ -5,7 +5,7 @@ module ApplicationHelper
     'https://discord.gg/hvqVr6d'
   end
 
-  def github_link(extension='')
+  def github_link(extension = '')
     "https://github.com/TheOdinProject/#{extension}"
   end
 
@@ -13,10 +13,8 @@ module ApplicationHelper
     'https://forum.theodinproject.com'
   end
 
-  def title(input=nil)
-    if input
-      content_for(:title) { input + ' | The Odin Project' }
-    end
+  def title(input = nil)
+    content_for(:title) { input + ' | The Odin Project' } if input
   end
 
   def bootstrap_class_for(flash_type)
@@ -45,8 +43,8 @@ module ApplicationHelper
       {
         question: 'What is the goal of the The Odin Project?',
         answer:
-          "<p>The goal of The Odin Project is to provide a complete path for students to go from zero programming knowledge to employed as web developers while working with other students and picking up the skills to become self sufficient along the way.</p>"
-         
+          '<p>The goal of The Odin Project is to provide a complete path for students to go from zero programming knowledge to employed as web developers while working with other students and picking up the skills to become self sufficient along the way.</p>'
+
       },
       {
         question: 'How long does The Odin Project take?',
@@ -111,8 +109,8 @@ module ApplicationHelper
       {
         question: 'Do you have a Code of Conduct?',
         answer:
-          "Yes!  While interacting with other Odinites you agree to the following:<br />" + Kramdown::Document.new(File.read('doc/code_of_conduct.md')).to_html
-        },
+          'Yes!  While interacting with other Odinites you agree to the following:<br />' + Kramdown::Document.new(File.read('doc/code_of_conduct.md')).to_html
+      },
       {
         question: 'Can I use this curriculum to teach?',
         answer:
@@ -162,28 +160,22 @@ module ApplicationHelper
       },
       { badge_image_url: 'badge-git.svg',
         badge_alt_text: 'git badge',
-        title: 'Git'
-      },
+        title: 'Git' },
       { badge_image_url: 'badge-database.svg',
         badge_alt_text: 'databases badge',
-        title: 'Databases'
-      },
+        title: 'Databases' },
       { badge_image_url: 'badge-ruby.svg',
         badge_alt_text: 'ruby badge',
-        title: 'Ruby'
-      },
+        title: 'Ruby' },
       { badge_image_url: 'badge-ruby-on-rails.svg',
         badge_alt_text: 'ruby on rails badge',
-        title: 'Ruby on Rails'
-      },
+        title: 'Ruby on Rails' },
       { badge_image_url: 'badge-nodejs.svg',
         badge_alt_text: 'nodejs badge',
-        title: 'NodeJS'
-      },
+        title: 'NodeJS' },
       { badge_image_url: 'badge-getting-hired.svg',
         badge_alt_text: 'getting hired badge',
-        title: 'Getting Hired'
-      }
+        title: 'Getting Hired' }
     ]
   end
 

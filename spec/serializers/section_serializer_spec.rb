@@ -7,7 +7,7 @@ RSpec.describe SectionSerializer do
     double(
       'Section',
       title: 'Installations',
-      lessons: lessons,
+      lessons: lessons
     )
   end
   let(:between_dates) do
@@ -18,7 +18,7 @@ RSpec.describe SectionSerializer do
   let(:serialized_lesson) do
     {
       title: 'Overview',
-      completions: 1,
+      completions: 1
     }
   end
 
@@ -26,13 +26,13 @@ RSpec.describe SectionSerializer do
     let(:serialized_section) do
       {
         title: 'Installations',
-        lessons: [serialized_lesson],
+        lessons: [serialized_lesson]
       }
     end
 
     before do
-      allow(LessonSerializer).to receive(:as_json).with(lesson, between_dates).
-        and_return(serialized_lesson)
+      allow(LessonSerializer).to receive(:as_json).with(lesson, between_dates)
+                                                  .and_return(serialized_lesson)
     end
 
     it { is_expected.to eql(serialized_section) }

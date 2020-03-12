@@ -8,13 +8,13 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     if @user.persisted?
       sign_in_and_redirect @user
-      set_flash_message(:notice, :success, :kind => provider_title)
+      set_flash_message(:notice, :success, kind: provider_title)
     else
       session['devise.github_data'] = auth
       redirect_to new_user_registration_url
     end
   end
-  alias_method :google, :github
+  alias google github
 
   def failure
     flash[:alert] = 'Authentication failed.'

@@ -1,8 +1,7 @@
 module CourseHelper
-
   def lesson_completed?(user, lesson)
     if user.completed_lessons.map(&:id).include?(lesson.id)
-      "section-lessons__item__icon--completed"
+      'section-lessons__item__icon--completed'
     end
   end
 
@@ -16,7 +15,7 @@ module CourseHelper
 
   def course_completed_class?(course, user)
     if user_signed_in? && course_completed_by_user?(course, user)
-      "course-card-header--completed"
+      'course-card-header--completed'
     end
   end
 

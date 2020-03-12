@@ -5,13 +5,13 @@ class Course < ApplicationRecord
   has_many :lessons, through: :sections
   has_many :track_courses
 
-  scope :track_order, -> {
-    Course.includes(:track_courses).order("track_courses.position") 
+  scope :track_order, lambda {
+    Course.includes(:track_courses).order('track_courses.position')
   }
 
   validates :position, presence: true
 
-  friendly_id :title, use: [:slugged, :finders]
+  friendly_id :title, use: %i[slugged finders]
 
   def progress_for(user)
     user.progress_for(self)

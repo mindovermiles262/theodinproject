@@ -16,9 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_admin_user!
-    unless current_user && current_user.admin?
-      redirect_to root_path
-    end
+    redirect_to root_path unless current_user&.admin?
   end
 
   def after_sign_out_path_for(_resource_or_scope)
@@ -52,12 +50,12 @@ class ApplicationController < ActionController::Base
   end
 
   def check_referal
-    if request.referer != nil && bad_referal.include?(URI(request.referer).host)
+    if !request.referer.nil? && bad_referal.include?(URI(request.referer).host)
       flash[:info] = "Did you know The Odin Project is 100% free of charge? #{view_context.link_to('Click Here', faq_path)} to learn more".html_safe
     end
   end
 
   def bad_referal
-    ["microverse.org"]
+    ['microverse.org']
   end
 end

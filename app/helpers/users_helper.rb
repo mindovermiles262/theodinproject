@@ -1,5 +1,4 @@
 module UsersHelper
-
   def lesson_time(user, lesson)
     user.lesson_completion_time(lesson).to_formatted_s(:long)
   end
@@ -14,14 +13,14 @@ module UsersHelper
 
   def display_learning_goal(user)
     if user.learning_goal.blank?
-      "No learning goal set yet."
+      'No learning goal set yet.'
     else
       user.learning_goal
     end
   end
 
   def avatar_path(avatar)
-    avatar || image_path("odin-logo.svg")
+    avatar || image_path('odin-logo.svg')
   end
 
   private

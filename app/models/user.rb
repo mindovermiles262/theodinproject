@@ -3,7 +3,7 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable, :recoverable,
          :rememberable, :trackable, :validatable,
-         :omniauthable, :omniauth_providers => [:github, :google]
+         :omniauthable, omniauth_providers: %i[github google]
 
   acts_as_voter
 
@@ -28,6 +28,7 @@ class User < ApplicationRecord
 
   def latest_completed_lesson
     return unless last_lesson_completed
+
     Lesson.find(last_lesson_completed.lesson_id)
   end
 
@@ -40,7 +41,7 @@ class User < ApplicationRecord
   end
 
   def update_avatar(avatar)
-    self.update!(avatar: avatar)
+    update!(avatar: avatar)
   end
 
   def password_required?
@@ -55,15 +56,15 @@ class User < ApplicationRecord
 
   def self.new_with_session(params, session)
     super.tap do |user|
-      if data = session["devise.github_data"] && session["devise.github_data"]["extra"]["raw_info"]
-        user.email = data["email"] if user.email.blank?
+      if data = session['devise.github_data'] && session['devise.github_data']['extra']['raw_info']
+        user.email = data['email'] if user.email.blank?
       end
     end
   end
 
   def send_welcome_email
     UserMailer.send_welcome_email_to(self).deliver_now!
-  rescue => error
+  rescue StandardError => error
     logger.error "Error sending welcome email: #{error}"
   end
 end

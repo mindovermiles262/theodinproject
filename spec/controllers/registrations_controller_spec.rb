@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe RegistrationsController do
-
   before do
     request.env['devise.mapping'] = Devise.mappings[:user]
   end
@@ -9,14 +8,14 @@ RSpec.describe RegistrationsController do
   describe 'POST #create' do
     let(:list_id) { ENV['MAILCHIMP_LIST_ID'] }
     let(:email) { 'kevin@bazfiz.com' }
-    let(:user_attributes) {
+    let(:user_attributes) do
       {
         username: 'kevin',
         email: email,
         password: 'foobar1',
-        password_confirmation: 'foobar1',
+        password_confirmation: 'foobar1'
       }
-    }
+    end
     let(:user) do
       User.create(user_attributes)
     end
@@ -30,7 +29,6 @@ RSpec.describe RegistrationsController do
       post :create, params: { user: user_attributes }
       expect(response).to redirect_to(dashboard_path)
     end
-
 
     it 'registers the new user on the mailchimp mailing list', if: ENV['MAILCHIMP_LIST_ID'] do
       expect(MailchimpSubscription).to receive(:create)
@@ -46,13 +44,13 @@ RSpec.describe RegistrationsController do
 
   describe 'PATCH #update' do
     let(:user) { FactoryBot.create(:user) }
-    let(:updated_attributes) {
+    let(:updated_attributes) do
       {
         email: 'kevin@email.com',
         current_password: user.password,
         learning_goal: 'This is me'
       }
-    }
+    end
 
     before do
       sign_in user

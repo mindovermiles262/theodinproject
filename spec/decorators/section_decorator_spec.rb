@@ -12,8 +12,8 @@ RSpec.describe SectionDecorator do
     let(:decorated_lessons) { [decorated_lesson] }
 
     before do
-      allow(LessonDecorator).to receive(:new).with(lesson).
-        and_return(decorated_lesson)
+      allow(LessonDecorator).to receive(:new).with(lesson)
+                                             .and_return(decorated_lesson)
     end
 
     it 'returns decorated lessons' do

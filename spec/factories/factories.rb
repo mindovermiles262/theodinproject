@@ -25,7 +25,7 @@ FactoryBot.define do
     sequence :position do |n|
       n
     end
-    description { "A Track"}
+    description { 'A Track' }
 
     factory :track_with_courses do
       transient do

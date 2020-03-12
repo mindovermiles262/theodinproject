@@ -26,14 +26,14 @@ RSpec.describe OmniauthCallbacksController, type: :controller do
     end
 
     context 'when the user avatar needs updated' do
-      let(:user) {
+      let(:user) do
         FactoryBot.create(
           :user,
           username: 'John',
           email: 'john@example.com',
           avatar: nil
         )
-      }
+      end
 
       it 'sets the users avatar' do
         expect(user).to receive(:update_avatar).with('http://github.com/fake-avatar')
@@ -43,7 +43,7 @@ RSpec.describe OmniauthCallbacksController, type: :controller do
 
     context 'when user is not persisted and does not exist' do
       let(:persisted) { false }
-      let(:user_signed_in?) { false}
+      let(:user_signed_in?) { false }
 
       it 'stores the auth data in the session' do
         get :github

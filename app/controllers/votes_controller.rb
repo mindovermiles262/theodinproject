@@ -4,6 +4,7 @@ class VotesController < ApplicationController
   def create
     @project = Project.find(params[:project_id])
     return head :bad_request if @project.user == current_user
+
     @project.upvote_for(current_user)
     @decorated_project = ProjectDecorator.new(@project)
   end
@@ -11,6 +12,7 @@ class VotesController < ApplicationController
   def destroy
     @project = Project.find(params[:project_id])
     return head :bad_request if @project.user == current_user
+
     @project.remove_vote_for(current_user)
     @decorated_project = ProjectDecorator.new(@project)
   end
