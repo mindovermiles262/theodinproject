@@ -1,9 +1,7 @@
 class ProjectsController < ApplicationController
-  before_action :authenticate_request, except: :index
+  before_action :authenticate_user!
   before_action :find_lesson
   before_action :find_project, only: %i(update destroy)
-
-  authorize_resource only: %i(update destroy)
 
   def index
     @projects = all_projects.page(params[:page]).per(50)
@@ -13,20 +11,20 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = new_project(project_params)
-    @project.save
-    @projects = latest_projects
+    project = current_user.projects.create!(project_params)
+    render json: { project: ProjectSerializer.as_json(project) }, status: :ok
   end
 
   def update
     @project.update(project_params)
-    @decorated_project = ProjectDecorator.new(@project)
+
+    render json: { project: ProjectSerializer.as_json(@project) }, status: :ok
   end
 
   def destroy
     @project.destroy
-    @project = new_project
-    @projects = latest_projects
+
+    render json: { message: 'removed' }, status: :ok
   end
 
   private
@@ -58,10 +56,11 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:repo_url, :live_preview)
-  end
-
-  def authenticate_request
-    return head :unauthorized unless user_signed_in?
+    params.require(:project).permit(
+      :repo_url,
+      :live_preview_url,
+      :is_public,
+      :lesson_id
+    )
   end
 end

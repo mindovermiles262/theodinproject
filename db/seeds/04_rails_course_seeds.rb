@@ -43,6 +43,18 @@ create_or_update_lesson(
 
 lesson_position += 1
 create_or_update_lesson(
+  title: "Preparing for Deployment",
+  title_url: "Preparing for Deployment".parameterize,
+  description: "Get setup to use Heroku to deploy our web applications",
+  position: lesson_position,
+  section_id: section.id,
+  is_project: false,
+  url: "/rails_programming/introduction/preparing_for_deployment.md",
+  repo: 'curriculum'
+)
+
+lesson_position += 1
+create_or_update_lesson(
   title: "Installing Rails",
   title_url: "Installing Rails".parameterize,
   description: "Get setup for this course by installing Rails.",
@@ -307,18 +319,6 @@ create_or_update_lesson(
   section_id: section.id,
   is_project: false,
   url: "/rails_programming/advanced_forms_and_activerecord/active_record_callbacks.md",
-  repo: 'curriculum'
-)
-
-lesson_position += 1
-create_or_update_lesson(
-  title: "Advanced Associations",
-  title_url: "Advanced Associations".parameterize,
-  description: "Exercise those association muscles to finish up the tutorial like a pro.",
-  position: lesson_position,
-  section_id: section.id,
-  is_project: true,
-  url: "/rails_programming/advanced_forms_and_activerecord/project_associations_2.md",
   repo: 'curriculum'
 )
 
