@@ -90,27 +90,29 @@ def require_updates?(real_attrs, seed_attrs)
   # SAY "UPDATED" EVEN IF NOTHING CHANGED
 end
 
-load './db/seeds/01_web_dev_101_seeds.rb'
-load './db/seeds/02_ruby_course_seeds.rb'
-load './db/seeds/03_database_course_seeds.rb'
-load './db/seeds/04_rails_course_seeds.rb'
-load './db/seeds/05_html_css_course_seeds.rb'
-load './db/seeds/06_javascript_course_seeds.rb'
-load './db/seeds/07_getting_hired_course_seeds.rb'
-load './db/seeds/08_node_js_course_seeds.rb'
+# load './db/seeds/01_web_dev_101_seeds.rb'
+# load './db/seeds/02_ruby_course_seeds.rb'
+# load './db/seeds/03_database_course_seeds.rb'
+# load './db/seeds/04_rails_course_seeds.rb'
+# load './db/seeds/05_html_css_course_seeds.rb'
+# load './db/seeds/06_javascript_course_seeds.rb'
+# load './db/seeds/07_getting_hired_course_seeds.rb'
+# load './db/seeds/08_node_js_course_seeds.rb'
+load './db/seeds/09_python_course_seeds.rb'
 
 
 Rails.logger.info "\n\n***** STARTING TRACKS *****"
 
-load './db/seeds/tracks/full_stack_rails.rb'
-load './db/seeds/tracks/full_stack_javascript.rb'
-load './db/seeds/tracks/front_end.rb'
+# load './db/seeds/tracks/full_stack_rails.rb'
+# load './db/seeds/tracks/full_stack_javascript.rb'
+# load './db/seeds/tracks/front_end.rb'
+load './db/seeds/tracks/python.rb'
 
 # GENERATE SUCCESS STORY Content
 load './db/seeds/success_stories.rb'
 
 # GENERATE test projects
-load './db/seeds/test_projects.rb'
+# load './db/seeds/test_projects.rb'
 
 #################
 # SANITY CHECKS #
